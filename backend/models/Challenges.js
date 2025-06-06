@@ -1,28 +1,25 @@
 import mongoose from 'mongoose';
 
 const LocationChallengeSchema = new mongoose.Schema({
-  name: {
+  title: {
     type: String,
-    required: true
+    required: true,
   },
-  coordinates: {
-    type: {
-      type: String,
-      enum: ['Point'],
-      required: true
-    },
-    coordinates: {
-      type: [Number],
-      required: true
-    }
+  description: {
+    type: String,
+    required: true,
   },
-  radius: {
-    type: Number,
-    required: true
+  duration: {
+    type: String,
+    required: true,
   },
-  rewardPoints: {
-    type: Number,
-    required: true
+  participants: {
+    type:[ mongoose.Schema.Types.ObjectId],
+    ref: "user"
+  },
+  onGoing: {
+    type: Boolean,
+    default: true
   }
 });
 

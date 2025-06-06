@@ -7,11 +7,7 @@ import { connectDB } from "./db_connect.js";
 // importing the routes
 import userRouter from "./routes/user.js";
 import challengeRouter from "./routes/challenges.js";
-import coachingSessionRouter from "./routes/coachingSession.js";
-import equipmentRouter from "./routes/equipment.js";
-import sleepLogRouter from "./routes/sleepLog.js";
-import mealLogRouter from "./routes/mealLog.js";
-import userRecommendationRouter from "./routes/userRecommendation.js";
+import workoutRoute from "./routes/personalPlan.js";
 
 // ...... invoking the dotenv .......
 dotenv.config();
@@ -22,7 +18,7 @@ connectDB();
 const app = express();
 
 // ...... creating server port .......
-const PORT = process.env.PORT || 4001;
+const PORT = process.env.PORT || 4000;
 
 // ....... all middlewares .......
 app.use(express.json());
@@ -30,15 +26,11 @@ app.use(cors());
 app.use(helmet());
 app.use(morgan("dev"));
 
-// .............. routes .........
+// ......... routes .........
 app.use("/api/auth/", userRouter);
 // other routes
 app.use("/api/challenges/", challengeRouter);
-app.use("/api/coaching-sessions/", coachingSessionRouter);
-app.use("/api/equipment/", equipmentRouter);
-app.use("/api/sleep-logs/", sleepLogRouter);
-app.use("/api/meal-logs/", mealLogRouter);
-app.use("/api/user-recommendations/", userRecommendationRouter);
+app.use("/api/workout/", workoutRoute);
 
 // ...... creaating the server .......
 app.listen(PORT, () => {
